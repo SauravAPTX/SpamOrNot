@@ -7,9 +7,18 @@ from nltk.stem.porter import PorterStemmer
 import os
 
 # Download required NLTK resources
-nltk.download('punkt')
+
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt", quiet=True)
+
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords", quiet=True)
+    
 nltk.download('punkt_tab')
-nltk.download('stopwords')
 
 ps = PorterStemmer()
 
